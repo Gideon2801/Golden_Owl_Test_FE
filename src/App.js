@@ -28,13 +28,17 @@ function App() {
 
   const getCart = () => {
     setCart(JSON.parse(localStorage.getItem('cart')));
-    const totalPrice = JSON.parse(localStorage.getItem('cart')).reduce(
-      (total, product) => {
-        return total + product.price * product.count;
-      },
-      0
-    );
-    setTotalPrice(totalPrice.toFixed(2));
+
+    if (JSON.parse(localStorage.getItem('cart'))) {
+      const totalPrice = JSON.parse(localStorage.getItem('cart')).reduce(
+        (total, product) => {
+          return total + product.price * product.count;
+        },
+        0
+      );
+      setTotalPrice(totalPrice.toFixed(2));
+    }
+
   };
 
   const addToCart = (product) => {
